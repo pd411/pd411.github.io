@@ -17,25 +17,25 @@
 ## => Site Settings
 ##############################
 text_skin: default # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
-highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
-url     : https://tianqi.name
-baseurl : /jekyll-TeXt-theme
-title   : TeXt Theme
+highlight_theme: tomorrow-night-bright # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
+url     : https://pd411.github.io
+baseurl : 
+title   : Di Peng's blog
 description: >
-  A super customizable Jekyll theme for personal site, team site, blog, project, documentation, etc.
+  
 
 
 ## => Language and Timezone
 ##############################
-lang: en # the language of your site, default as "en"
-timezone: Asia/Shanghai
+lang: zh-Hans # the language of your site, default as "en"
+timezone: Australia/Sydney
 
 
 ## => Author and Social
 ##############################
 author:
-  type      : organization # "person" (default), "organization"
-  name      : TeXt
+  type      : default # "person" (default), "organization"
+  name      : Di Peng
   url       :
   avatar    : /assets/apple-touch-icon.png
   bio: >
