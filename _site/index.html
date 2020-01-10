@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="zh-Hans">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>主页 - 没有名字的博客
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>主页 - pd411
 </title>
 
 <meta name="description" content="">
-<link rel="canonical" href="http://localhost:4000/"><link rel="alternate" type="application/rss+xml" title="没有名字的博客
+<link rel="canonical" href="http://localhost:4000/"><link rel="alternate" type="application/rss+xml" title="pd411
 " href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
@@ -265,7 +265,7 @@
 </style>
 <path class="st0" d="M1.7,22.3c5.7-5.7,11.3-5.7,17,0c3.3-3.3,3.5-5.3,0.8-6c2.7,0.7,3.5-1.1,2.3-5.6s-3.3-5.2-6.3-2.1
 	c3-3,2.3-5.2-2.1-6.3S7,1.8,7.7,4.6C7,1.8,5,2.1,1.7,5.3C7.3,11,7.3,16.7,1.7,22.3"/>
-</svg><a title="" href="/">没有名字的博客
+</svg><a title="" href="/">pd411
 </a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
         <ul><li class="navigation__item"><a href="/archive.html">文档</a></li><li class="navigation__item"><a href="/about.html">关于</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
       </nav></div>
@@ -277,8 +277,106 @@
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet --><article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>主页</h1></header><meta itemprop="headline" content="主页"><meta itemprop="author" content="Di Peng"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2020/01/09/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-OkHttp3+Retrofit(2).html"><h2 itemprop="headline" class="item__header">okHttp3解析（二）：拦截器（责任链模式）</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">接着上一部分的内容，在AsyncCall类中同步execute或异步executeOn两个方法中均有getResponseWithInterceptorChain()方法调用。以下是该方法的内容：
+Response getResponseWithInterceptorChain() throws IOException {
+    // Build a full stack of interceptors.
+    List&lt;Interceptor&gt; interceptors = new ArrayList&lt;&gt;();
+    interceptors.addAll(client.interceptors());
+    interceptors.add(new ...</div><p><a href="/2020/01/09/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-OkHttp3+Retrofit(2).html">阅读更多</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2020年 01月09日</span>
+            </li></ul></div><meta itemprop="author" content="Di Peng"/><meta itemprop="datePublished" content="2020-01-09T00:00:00+11:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2020/01/08/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-OkHttp3+Retrofit(1).html"><h2 itemprop="headline" class="item__header">okHttp3解析（一）：异步与同步</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">使用方法：
+1.添加依赖：
+    implementation 'com.squareup.okhttp3:okhttp:4.3.0'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.3.0'
+
+
+2.添加网络权限在AndroidManifest.xml中：
+  &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+
+
+3.1对url进行Get请求：
+    OkHttpClient client = new OkHttpClient();
+
+    String run(String url) throws IOExcepti...</div><p><a href="/2020/01/08/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-OkHttp3+Retrofit(1).html">阅读更多</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2020年 01月08日</span>
+            </li></ul></div><meta itemprop="author" content="Di Peng"/><meta itemprop="datePublished" content="2020-01-08T00:00:00+11:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2019/12/27/View%E4%BA%8B%E4%BB%B6%E4%BD%93%E7%B3%BB.html"><h2 itemprop="headline" class="item__header">View事件体系</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">触摸滑动事件
+1. MotionEvent
+MotionEvent表示在手指触摸屏幕后所产生的一系列事件，分别有以下几种：
+
+
+  
+    
+      事件
+      触发场景
+      单次事件中触发的次数
+    
+  
+  
+    
+      ACTION_DOWN
+      手指刚接触屏幕
+      1次
+    
+    
+      ACTION_MOVE
+      手指在屏幕上移动
+      0次或多次
+    
+    
+      ACTION_UP
+      手指在屏幕上松开的一瞬间
+      0次或1次
+    
+    
+      ACTION_CANCEL
+      手指在滑动超出控件边界
+      0次或1次
+    
+  
+
+...</div><p><a href="/2019/12/27/View%E4%BA%8B%E4%BB%B6%E4%BD%93%E7%B3%BB.html">阅读更多</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2019年 12月27日</span>
+            </li></ul></div><meta itemprop="author" content="Di Peng"/><meta itemprop="datePublished" content="2019-12-27T00:00:00+11:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2019/12/25/View%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%86.html"><h2 itemprop="headline" class="item__header">View绘制流程及原理</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">Android提供了一些多功能且强大的组建模式去创建你自己UI，基于布局类：View和ViewGroup。在一开始Android平台就已经提供了各式各样的View和ViewGroup的子类，包括Button，TextView，EditText，ListView，CheckBox，RadioButton，Gallery，Spinner，以及一些特殊作用的AutoCompleteTextView，ImageSwitcher，和 TextSwitcher。并且有一些布局类提供，像 LinearLayout, FrameLayout, RelativeLayout等。
+
+但现有的组建或布局都无法满足你的需求，则可以建立自己的View子类。如果只需要进行小的修改对于现有的组建或布局，只需要继承该...</div><p><a href="/2019/12/25/View%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%8F%8A%E5%8E%9F%E7%90%86.html">阅读更多</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2019年 12月25日</span>
+            </li></ul></div><meta itemprop="author" content="Di Peng"/><meta itemprop="datePublished" content="2019-12-25T00:00:00+11:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2019/10/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86-%E4%BA%8C.html"><h2 itemprop="headline" class="item__header">操作系统知识点整理 (二)</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">3 计算机体系结构及内存分层体系
+
+  计算机体系结构/内存分层体系
+  地址空间 &amp; 地址生成
+  连续内存分配
+
+
+3.1 计算机体系结构/内存分层体系
+
+  
+    计算机体系结构 （图片：计算机基本硬件结构）
+  
+  
+    内存分层体系
+（图片：内存层次结构）
+  
+  在操作系统的内存管理范例
+操作系统需要完成的四个目标
+    
+      抽象：希望应用程序在内存中运行时由于操作系统的有效管理而不需要去考虑底层的细节，只需要访问连续的地址空间（逻辑地址空间）
+      保护： 内存中可以运行多个地址空间， 需要有效的机制，有效的保护和隔离进程之间的地址空间
+      共享： 除隔离以外，进程之间有可能交互
+      虚拟化： 将最需要放入内存的数据放...</div><p><a href="/2019/10/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86-%E4%BA%8C.html">阅读更多</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2019年 10月31日</span>
+            </li></ul></div><meta itemprop="author" content="Di Peng"/><meta itemprop="datePublished" content="2019-10-31T00:00:00+11:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2019/10/29/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.html"><h2 itemprop="headline" class="item__header">操作系统知识点整理 (一)</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">一、什么是操作系统
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">一、操作系统概述
+1.1 什么是操作系统
 
   从用户角度上，操作系统是一个控制系统，管理应用程序，为应用提供服务（如IO服务），可以杀死应用程序
   从对象而言，资源管理，管理外设，分配资源
@@ -286,7 +384,7 @@
 
 
 
-二、操作系统层次结构
+1.2 操作系统层次结构
 
 
 对于应用层面：
@@ -321,7 +419,7 @@
 </div>
 </div>
     </div><div class="site-info mt-2">
-      <div>© 没有名字的博客
+      <div>© pd411
  2019,
         Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
         title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
