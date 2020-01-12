@@ -6,7 +6,7 @@ aside:
 key: Android
 ---
 
-## 使用方法：
+## 使用方法
 1.添加依赖：
 ```
     implementation 'com.squareup.okhttp3:okhttp:4.3.0'
@@ -72,7 +72,7 @@ client.newCall(request).enqueue(new Callback() {
         });
 ```
 
-## 详细分析：
+## 详细分析
 ### OkHttp3优点：
 - 支持Http1.0、1.1和2.0，支持连接同一地址共享同一个socket
 - 支持透明的Gzip压缩
