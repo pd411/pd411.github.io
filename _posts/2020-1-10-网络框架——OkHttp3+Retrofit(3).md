@@ -1,4 +1,11 @@
-# okHttp3解析（三）：缓存机制
+---
+layout: article
+title: okHttp3解析（三）：缓存机制
+aside:
+  toc: true
+key: Android
+---
+
 通过上一节，拦截器中`CacheInterceptor`的内容，这一节的内容是关于OkHttp的缓存机制。从`intercept`部分开始进行分析：
 ```
     Response cacheCandidate = cache != null
