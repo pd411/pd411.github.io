@@ -404,3 +404,4 @@ private CacheStrategy getCandidate() {
 - `request == null and response == null`：不允许使用网络请求，且没有缓存，在`CacheInterceptor`中会构建一个`504`的response。
 
 
+
