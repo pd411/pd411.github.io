@@ -382,3 +382,6 @@ void executeOn(ExecutorService executorService) {
   }
 ```
 跳转到`Dispatcher`类的`executed`方法，直接将Call加入到`runningSyncCalls`队列中。
+
+流程图：
+!["okhttp3同步与异步流程图"]({{site.url}}/assets/images/android/okhttp/Okhttp3同步异步流程.png "okhttp3同步与异步流程图")
