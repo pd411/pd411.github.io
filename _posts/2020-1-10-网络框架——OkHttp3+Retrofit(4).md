@@ -256,83 +256,83 @@ private RealConnection findConnection(int connectTimeout, int readTimeout, int w
 根据上面 `StreamAllocation.findConnection` 返回的是一个 `RealConnection` 对象，之后是对 `RealConnection` 类的分析。下面是 `RealConnection.connect` 方法的源码部分：
 
 ```
-  public void connect(int connectTimeout, int readTimeout, int writeTimeout,
-      int pingIntervalMillis, boolean connectionRetryEnabled, Call call,
-      EventListener eventListener) {
-    if (protocol != null) throw new IllegalStateException("already connected");
+public void connect(int connectTimeout, int readTimeout, int writeTimeout,
+    int pingIntervalMillis, boolean connectionRetryEnabled, Call call,
+    EventListener eventListener) {
+  if (protocol != null) throw new IllegalStateException("already connected");
 
-    RouteException routeException = null;
-    List<ConnectionSpec> connectionSpecs = route.address().connectionSpecs();
-    ConnectionSpecSelector connectionSpecSelector = new ConnectionSpecSelector(connectionSpecs);
+  RouteException routeException = null;
+  List<ConnectionSpec> connectionSpecs = route.address().connectionSpecs();
+  ConnectionSpecSelector connectionSpecSelector = new ConnectionSpecSelector(connectionSpecs);
 
-    if (route.address().sslSocketFactory() == null) {
-      if (!connectionSpecs.contains(ConnectionSpec.CLEARTEXT)) {
-        throw new RouteException(new UnknownServiceException(
-            "CLEARTEXT communication not enabled for client"));
-      }
-      String host = route.address().url().host();
-      if (!Platform.get().isCleartextTrafficPermitted(host)) {
-        throw new RouteException(new UnknownServiceException(
-            "CLEARTEXT communication to " + host + " not permitted by network security policy"));
-      }
-    } else {
-      if (route.address().protocols().contains(Protocol.H2_PRIOR_KNOWLEDGE)) {
-        throw new RouteException(new UnknownServiceException(
-            "H2_PRIOR_KNOWLEDGE cannot be used with HTTPS"));
-      }
+  if (route.address().sslSocketFactory() == null) {
+    if (!connectionSpecs.contains(ConnectionSpec.CLEARTEXT)) {
+      throw new RouteException(new UnknownServiceException(
+          "CLEARTEXT communication not enabled for client"));
     }
+    String host = route.address().url().host();
+    if (!Platform.get().isCleartextTrafficPermitted(host)) {
+      throw new RouteException(new UnknownServiceException(
+          "CLEARTEXT communication to " + host + " not permitted by network security policy"));
+    }
+  } else {
+    if (route.address().protocols().contains(Protocol.H2_PRIOR_KNOWLEDGE)) {
+      throw new RouteException(new UnknownServiceException(
+          "H2_PRIOR_KNOWLEDGE cannot be used with HTTPS"));
+    }
+  }
 
-    while (true) {
-      try {
-        if (route.requiresTunnel()) {
-          connectTunnel(connectTimeout, readTimeout, writeTimeout, call, eventListener);
-          if (rawSocket == null) {
-            // We were unable to connect the tunnel but properly closed down our resources.
-            break;
-          }
-        } else {
-          connectSocket(connectTimeout, readTimeout, call, eventListener);
+  while (true) {
+    try {
+      if (route.requiresTunnel()) {
+        connectTunnel(connectTimeout, readTimeout, writeTimeout, call, eventListener);
+        if (rawSocket == null) {
+          // We were unable to connect the tunnel but properly closed down our resources.
+          break;
         }
-        establishProtocol(connectionSpecSelector, pingIntervalMillis, call, eventListener);
-        eventListener.connectEnd(call, route.socketAddress(), route.proxy(), protocol);
-        break;
-      } catch (IOException e) {
-        closeQuietly(socket);
-        closeQuietly(rawSocket);
-        socket = null;
-        rawSocket = null;
-        source = null;
-        sink = null;
-        handshake = null;
-        protocol = null;
-        http2Connection = null;
-
-        eventListener.connectFailed(call, route.socketAddress(), route.proxy(), null, e);
-
-        if (routeException == null) {
-          routeException = new RouteException(e);
-        } else {
-          routeException.addConnectException(e);
-        }
-
-        if (!connectionRetryEnabled || !connectionSpecSelector.connectionFailed(e)) {
-          throw routeException;
-        }
+      } else {
+        connectSocket(connectTimeout, readTimeout, call, eventListener);
       }
-    }
+      establishProtocol(connectionSpecSelector, pingIntervalMillis, call, eventListener);
+      eventListener.connectEnd(call, route.socketAddress(), route.proxy(), protocol);
+      break;
+    } catch (IOException e) {
+      closeQuietly(socket);
+      closeQuietly(rawSocket);
+      socket = null;
+      rawSocket = null;
+      source = null;
+      sink = null;
+      handshake = null;
+      protocol = null;
+      http2Connection = null;
 
-    if (route.requiresTunnel() && rawSocket == null) {
-      ProtocolException exception = new ProtocolException("Too many tunnel connections attempted: "
-          + MAX_TUNNEL_ATTEMPTS);
-      throw new RouteException(exception);
-    }
+      eventListener.connectFailed(call, route.socketAddress(), route.proxy(), null, e);
 
-    if (http2Connection != null) {
-      synchronized (connectionPool) {
-        allocationLimit = http2Connection.maxConcurrentStreams();
+      if (routeException == null) {
+        routeException = new RouteException(e);
+      } else {
+        routeException.addConnectException(e);
+      }
+
+      if (!connectionRetryEnabled || !connectionSpecSelector.connectionFailed(e)) {
+        throw routeException;
       }
     }
   }
+
+  if (route.requiresTunnel() && rawSocket == null) {
+    ProtocolException exception = new ProtocolException("Too many tunnel connections attempted: "
+        + MAX_TUNNEL_ATTEMPTS);
+    throw new RouteException(exception);
+  }
+
+  if (http2Connection != null) {
+    synchronized (connectionPool) {
+      allocationLimit = http2Connection.maxConcurrentStreams();
+    }
+  }
+}
 ```
 
 
